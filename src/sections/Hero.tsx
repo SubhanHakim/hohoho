@@ -50,7 +50,7 @@ export const Hero = () => {
                     <a href="https://x.com/hohoho_dev" target="_blank" className="btn-primary flex items-center gap-2 group">
                         X.com
                     </a>
-                    <a href="https://pump.fun/coin/EYFftMefApeLLninT8zw4UQ3moNjESFceNFKoVRkpump" target="_blank" className="btn-secondary group">
+                    <a href="#" target="_blank" className="btn-secondary group">
                         PUMP.FUN
                     </a>
                 </div>
