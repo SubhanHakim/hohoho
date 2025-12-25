@@ -7,7 +7,7 @@ export const Footer = () => {
             {/* Socials */}
             <div className="flex items-center gap-4">
                 <a
-                    href="https://pump.fun"
+                    href="https://pump.fun/coin/EYFftMefApeLLninT8zw4UQ3moNjESFceNFKoVRkpump"
                     target="_blank"
                     rel="noreferrer"
                     className="w-8 h-8 flex items-center justify-center bg-gray-900/50 border border-gray-800 rounded-full hover:bg-neon-cyan/10 hover:border-neon-cyan/50 transition-all duration-300 group"
@@ -16,7 +16,7 @@ export const Footer = () => {
                 </a>
 
                 <a
-                    href="https://twitter.com"
+                    href="https://x.com/hohoho_dev"
                     target="_blank"
                     rel="noreferrer"
                     className="w-8 h-8 flex items-center justify-center bg-gray-900/50 border border-gray-800 rounded-full hover:bg-white/10 hover:border-white/30 transition-all duration-300 group"

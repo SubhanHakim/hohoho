@@ -6,7 +6,7 @@ import LightRays from '../components/ui/LightRays';
 
 export const Hero = () => {
     const [copied, setCopied] = useState(false);
-    const CA = "COMING SOON"; // Placeholder CA
+    const CA = "EYFftMefApeLLninT8zw4UQ3moNjESFceNFKoVRkpump"; // Placeholder CA
 
     const handleCopy = () => {
         navigator.clipboard.writeText(CA);
@@ -47,10 +47,10 @@ export const Hero = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-4 pt-4">
-                    <a href="https://twitter.com" target="_blank" className="btn-primary flex items-center gap-2 group">
+                    <a href="https://x.com/hohoho_dev" target="_blank" className="btn-primary flex items-center gap-2 group">
                         X.com
                     </a>
-                    <a href="https://pump.fun" target="_blank" className="btn-secondary group">
+                    <a href="https://pump.fun/coin/EYFftMefApeLLninT8zw4UQ3moNjESFceNFKoVRkpump" target="_blank" className="btn-secondary group">
                         PUMP.FUN
                     </a>
                 </div>
