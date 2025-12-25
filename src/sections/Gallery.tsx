@@ -8,7 +8,7 @@ interface GalleryProps {
 
 export const Gallery = ({ onSelectArtwork }: GalleryProps) => {
     return (
-        <section id="art" className="mb-32 px-8 md:px-28">
+        <section id="art" className="mb-32 px-4 md:px-28">
             <div className="flex items-center justify-between mb-16 border-b border-gray-800/50 pb-6">
                 <h3 className="font-mono text-xs tracking-[0.3em] text-neon-cyan/80">
                     VISUAL_LOGS
@@ -18,7 +18,7 @@ export const Gallery = ({ onSelectArtwork }: GalleryProps) => {
                 </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
                 {ARTWORKS.map((art, index) => (
                     <motion.div
                         key={art.id}
@@ -38,23 +38,23 @@ export const Gallery = ({ onSelectArtwork }: GalleryProps) => {
                                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                             />
 
-                            {/* Overlay Gradient on Hover */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            {/* Overlay Gradient: Visible on mobile, hover on desktop */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300" />
 
-                            {/* Icon */}
-                            <div className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                            {/* Icon: Hidden on mobile (cleaner), hover on desktop */}
+                            <div className="absolute top-4 right-4 p-2 bg-black/50 backdrop-blur-md rounded-full opacity-0 translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-300 hidden md:block">
                                 <Maximize2 size={16} className="text-white" />
                             </div>
 
-                            {/* Hover info */}
-                            <div className="absolute bottom-0 left-0 w-full p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                <p className="font-mono text-[10px] text-neon-cyan mb-1 tracking-widest uppercase">{art.type}</p>
-                                <h4 className="text-white font-sans text-lg font-light tracking-wide">{art.title}</h4>
+                            {/* Info: Visible on mobile, hover on desktop */}
+                            <div className="absolute bottom-0 left-0 w-full p-3 md:p-6 translate-y-0 opacity-100 md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 transition-all duration-300">
+                                <p className="font-mono text-[8px] md:text-[10px] text-neon-cyan mb-1 tracking-widest uppercase">{art.type}</p>
+                                <h4 className="text-white font-sans text-xs md:text-lg font-light tracking-wide leading-tight">{art.title}</h4>
                             </div>
                         </div>
 
-                        {/* ID Number (Outside) */}
-                        <div className="mt-3 flex justify-between items-center opacity-40 group-hover:opacity-100 transition-opacity">
+                        {/* ID Number (Outside): Visible on mobile, dim on desktop until hover */}
+                        <div className="mt-3 flex justify-between items-center opacity-100 md:opacity-40 md:group-hover:opacity-100 transition-opacity">
                             <span className="font-mono text-[10px] tracking-widest">
                                 FIG_{art.id.toString().padStart(2, '0')}
                             </span>

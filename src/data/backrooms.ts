@@ -25,7 +25,7 @@ export const BACKROOM_LOGS: BackroomLog[] = [
         title: '[TRUTH] HOHOHO Idle',
         description: 'It is doing nothing.',
         ascii: `
-    ( -_- )
+     ( -_- )
      /|___|\\
        | |
        |_|
