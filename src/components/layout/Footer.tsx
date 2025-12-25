@@ -7,7 +7,7 @@ export const Footer = () => {
             {/* Socials */}
             <div className="flex items-center gap-4">
                 <a
-                    href="https://pump.fun/coin/EYFftMefApeLLninT8zw4UQ3moNjESFceNFKoVRkpump"
+                    href="#"
                     target="_blank"
                     rel="noreferrer"
                     className="w-8 h-8 flex items-center justify-center bg-gray-900/50 border border-gray-800 rounded-full hover:bg-neon-cyan/10 hover:border-neon-cyan/50 transition-all duration-300 group"
