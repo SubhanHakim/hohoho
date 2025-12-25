@@ -6,7 +6,7 @@ import LightRays from '../components/ui/LightRays';
 
 export const Hero = () => {
     const [copied, setCopied] = useState(false);
-    const CA = "EYFftMefApeLLninT8zw4UQ3moNjESFceNFKoVRkpump"; // Placeholder CA
+    const CA = "Coming Soon"; // Placeholder CA
 
     const handleCopy = () => {
         navigator.clipboard.writeText(CA);
