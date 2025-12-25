@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
@@ -6,21 +6,72 @@ import dexscreenerLogo from '../../dexscreener.svg';
 
 export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
     const location = useLocation();
 
+    // ScrollSpy Logic
+    useEffect(() => {
+        const handleScroll = () => {
+            if (location.pathname !== '/') return;
+
+            const scrollPosition = window.scrollY;
+
+            // Define sections to track
+            const sections = [
+                { id: 'about', offset: 0 },
+                { id: 'art', offset: 0 }
+            ];
+
+            // Default to home at the top
+            let current = 'home';
+
+            for (const section of sections) {
+                const element = document.getElementById(section.id);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    // If the section top is near the middle/top of viewport
+                    if (rect.top <= window.innerHeight / 2) {
+                        current = section.id;
+                    }
+                }
+            }
+
+            // Special case: if at very top, force home
+            if (scrollPosition < 100) {
+                current = 'home';
+            }
+
+            setActiveSection(current);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        // Trigger once on mount
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [location.pathname]);
+
     const navLinks = [
-        { name: 'HOME', href: '/' },
-        { name: 'ABOUT', href: '#about' },
-        { name: 'ART', href: '#art' },
-        { name: 'BACKROOMS', href: '/backrooms' }
+        { name: 'HOME', href: '/', id: 'home' },
+        { name: 'ABOUT', href: '#about', id: 'about' },
+        { name: 'ART', href: '#art', id: 'art' },
+        { name: 'BACKROOMS', href: '/backrooms', id: 'backrooms' }
     ];
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
         if (href.startsWith('#')) {
             e.preventDefault();
-            const element = document.querySelector(href);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
+
+            const target = document.querySelector(href);
+            if (target) {
+                if ((window as any).lenis) {
+                    (window as any).lenis.scrollTo(href, {
+                        duration: 2.0,
+                        easing: (t: number) => 1 - Math.pow(1 - t, 4)
+                    });
+                } else {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
                 setIsOpen(false);
             }
         } else {
@@ -43,16 +94,25 @@ export const Header = () => {
                     <nav className="flex items-center gap-1 p-1 bg-winter-gray/40 backdrop-blur-md border border-white/5 rounded-full shadow-lg shadow-black/20">
                         {navLinks.map((link) => {
                             const isHash = link.href.startsWith('#');
-                            const isActive = isHash
-                                ? false
-                                : location.pathname === link.href;
+
+                            // Determine active state
+                            let isActive = false;
+                            if (link.href === '/backrooms') {
+                                isActive = location.pathname === '/backrooms';
+                            } else if (location.pathname === '/') {
+                                if (link.id === 'home') isActive = activeSection === 'home';
+                                else isActive = activeSection === link.id;
+                            }
 
                             return isHash ? (
                                 <a
                                     key={link.name}
                                     href={link.href}
                                     onClick={(e) => handleClick(e, link.href)}
-                                    className="px-6 py-2 text-xs font-mono text-gray-400 hover:text-white hover:bg-white/5 rounded-full transition-all duration-300"
+                                    className={`px-6 py-2 text-xs font-mono rounded-full transition-all duration-300 ${isActive
+                                        ? 'text-neon-cyan bg-white/10'
+                                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                        }`}
                                 >
                                     {link.name}
                                 </a>
@@ -139,8 +199,8 @@ export const Header = () => {
                                                 to={link.href}
                                                 onClick={() => setIsOpen(false)}
                                                 className={`block w-full py-4 text-2xl font-mono border-b border-gray-800 transition-all ${location.pathname === link.href
-                                                        ? 'text-neon-cyan'
-                                                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                                    ? 'text-neon-cyan'
+                                                    : 'text-gray-400 hover:text-white hover:bg-white/5'
                                                     }`}
                                             >
                                                 {link.name}

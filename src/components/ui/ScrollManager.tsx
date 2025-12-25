@@ -23,7 +23,7 @@ export const ScrollManager = () => {
         requestAnimationFrame(raf);
 
         // Optional: Expose lenis instance globally if needed for other components
-        // (window as any).lenis = lenis;
+        (window as any).lenis = lenis;
 
         return () => {
             lenis.destroy();

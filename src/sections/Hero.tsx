@@ -48,7 +48,7 @@ export const Hero = () => {
 
                 <div className="flex flex-wrap gap-4 pt-4">
                     <a href="https://twitter.com" target="_blank" className="btn-primary flex items-center gap-2 group">
-                        TWITTER_X
+                        X.com
                     </a>
                     <a href="https://pump.fun" target="_blank" className="btn-secondary group">
                         PUMP.FUN
